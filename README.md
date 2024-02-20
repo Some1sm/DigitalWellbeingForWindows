@@ -1,12 +1,18 @@
 # Digital Wellbeing For Windows 10
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/L4L2OU9W8)
 
+As the project seemengly got abandoned by Christian I will take it over as a personal learning project. I have no idea about coding so this will be fun.
+-D
+
+OG Releases:
 [![Github All Releases](https://img.shields.io/github/downloads/christiankyle-ching/DigitalWellbeingForWindows/total.svg)](https://github.com/christiankyle-ching/DigitalWellbeingForWindows/releases)
 
-An App Usage tracker (time tracker) for Windows 10 inspired by Digital Wellbeing in Android. Built with WPF (.NET 4.6), [ModernWpf](https://github.com/Kinnara/ModernWpf) and [Live Charts](https://lvcharts.net/).
+My Releases:
+[![Github All Releases](https://img.shields.io/github/downloads/some1sm/DigitalWellbeingForWindows/total.svg)](https://github.com/Some1sm/DigitalWellbeingForWindows/releases)
+
+An App Usage tracker (time tracker) for Windows 11 inspired by Digital Wellbeing in Android. Built with WPF (.NET 4.6), [ModernWpf](https://github.com/Kinnara/ModernWpf) and [Live Charts](https://lvcharts.net/).
 
 **This is only a hobby project. You will experience bugs.** See the [troubleshooting guide](#troubleshooting).
-You can help me fix them by reporting it in the [Issues tab](https://github.com/christiankyle-ching/DigitalWellbeingForWindows/issues/new).
+You can help me fix them by reporting it in the [Issues tab](https://github.com/some1sm/DigitalWellbeingForWindows/issues/new).
 
 There are no warranties associated in using this app.
 
