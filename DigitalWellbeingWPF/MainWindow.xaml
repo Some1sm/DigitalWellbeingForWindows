@@ -26,4 +26,6 @@
                    HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch"/>
         </ui:NavigationView>
     </Grid>
+    
 </Window>
+    

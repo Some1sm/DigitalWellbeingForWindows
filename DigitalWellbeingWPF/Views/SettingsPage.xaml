@@ -121,6 +121,35 @@
 
                 <ui:ListView Style="{StaticResource SettingListViewStyle}">
 
+
+                    <!-- Amount of days -->
+                    <ui:ListViewItem Style="{StaticResource SettingListItemStyle}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+
+                            <Label Content="Days to show on the graph: (Restart App after pressing 'Apply Changes' for changes to take effect)" VerticalAlignment="Center" Margin="10,0,10,20"/>
+                            <ui:NumberBox x:Name="DaysToShowTextBox" Margin="10,50,10,10" HorizontalAlignment="Left" Text="{Binding NumberOfDaysToDisplay, Mode=TwoWay}" />
+
+                        </Grid>
+                    </ui:ListViewItem>
+                    <!-- Apply Changes button -->
+                    <ui:ListViewItem Style="{StaticResource SettingListItemStyle}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" />
+                            <Button Click="SubmitChange" Margin="10,0,10,10" Content="Apply Changes" />
+                            <TextBlock Grid.Column="1"  />
+                        </Grid>
+                    </ui:ListViewItem>
+
                     <!-- Minimum Duration -->
                     <ui:ListViewItem Style="{StaticResource SettingListItemStyle}">
                         <Grid>
@@ -203,7 +232,8 @@
                     </ui:ListViewItem>
 
                 </ui:ListView>
-
+                
+                
                 <!-- NOTIFICATION -->
                 <TextBlock Text="Notifications" Style="{StaticResource SubtitleTextBlockStyle}" Margin="10,0,0,10"/>
 

@@ -1,5 +1,6 @@
 ﻿using DigitalWellbeing.Core;
 using DigitalWellbeingWPF.Helpers;
+using DigitalWellbeingWPF.ViewModels;
 using Microsoft.Win32;
 using ModernWpf;
 using System;
@@ -141,6 +142,15 @@ namespace DigitalWellbeingWPF.Views
         {
             Properties.Settings.Default.EnableAutoRefresh = EnableAutoRefresh.IsOn;
             Properties.Settings.Default.Save();
+        }
+
+        private void SubmitChange(object sender, RoutedEventArgs e)
+        {
+            int DayAmountlocal = (int)DaysToShowTextBox.Value;
+            Properties.Settings.Default.DayAmount = DayAmountlocal;
+            Properties.Settings.Default.Save();
+            AppUsageViewModel.NumberOfDaysToDisplay = Properties.Settings.Default.DayAmount;
+
         }
 
         private void MinDuration_LostFocus(object sender, RoutedEventArgs e)

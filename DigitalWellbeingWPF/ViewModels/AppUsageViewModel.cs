@@ -23,10 +23,16 @@ using System.Windows.Threading;
 
 namespace DigitalWellbeingWPF.ViewModels
 {
+    
+    
     public class AppUsageViewModel : INotifyPropertyChanged
     {
+
         #region Configurations
-        public static readonly int PrevDaysToLoad = 7;
+
+        //
+        public static int NumberOfDaysToDisplay { get; set; } = Properties.Settings.Default.DayAmount;
+        
         public static readonly int MinimumPieChartPercentage = 10;
         #endregion
 
@@ -51,13 +57,14 @@ namespace DigitalWellbeingWPF.ViewModels
                 "Today, " + this.LoadedDate.ToString("dddd") :
                 this.LoadedDate.ToString("dddd, MMM dd yyyy");
         }
-
+        
         // Total Duration
         public TimeSpan TotalDuration = new TimeSpan();
         public string StrTotalDuration
         {
             get
             {
+                
                 string output = "";
                 if (TotalDuration.Hours > 0) { output += $"{TotalDuration.Hours} hr, "; }
                 output += $"{TotalDuration.Minutes} min";
@@ -112,7 +119,7 @@ namespace DigitalWellbeingWPF.ViewModels
         #region Getters with Bindings
         public event PropertyChangedEventHandler PropertyChanged;
         public bool CanGoNext { get => LoadedDate.Date < DateTime.Now.Date; }
-        public bool CanGoPrev { get => LoadedDate.Date > DateTime.Now.AddDays(-PrevDaysToLoad + 1).Date; }
+        public bool CanGoPrev { get => LoadedDate.Date > DateTime.Now.AddDays(-NumberOfDaysToDisplay + 1).Date; }
         public bool IsLoading { get; set; }
         public double PieChartInnerRadius
         {
@@ -124,6 +131,7 @@ namespace DigitalWellbeingWPF.ViewModels
             double area = width * height;
             PieChartInnerRadius = Math.Sqrt(area / 10);
             OnPropertyChanged(nameof(PieChartInnerRadius));
+            
         }
 
         public bool IsWeeklyDataLoaded = false;
@@ -135,11 +143,11 @@ namespace DigitalWellbeingWPF.ViewModels
             InitFormatters();
 
             LoadUserExcludedProcesses();
-
+            
             LoadWeeklyData();
-
             InitAutoRefreshTimer();
         }
+        
 
         #region Init Functions
         private void InitCollections()
@@ -170,19 +178,27 @@ namespace DigitalWellbeingWPF.ViewModels
             refreshTimer = new DispatcherTimer() { Interval = intervalDuration };
             refreshTimer.Tick += (s, e) => TryRefreshData();
         }
+        private void SetDayAmount() 
+        {
+            int NumberOfDaysToDisplay = Properties.Settings.Default.DayAmount;
+            MessageBox.Show("please work2");
+            Console.WriteLine(NumberOfDaysToDisplay);
+            LoadWeeklyData();
+        }
 
         private void LoadUserExcludedProcesses()
         {
             userExcludedProcesses = Properties.Settings.Default.UserExcludedProcesses.Cast<string>().ToArray();
         }
 
-        private async void LoadWeeklyData()
+        public async void LoadWeeklyData()
         {
+            
             SetLoading(true);
 
             try
             {
-                DateTime minDate = DateTime.Now.AddDays(-PrevDaysToLoad);
+                DateTime minDate = DateTime.Now.AddDays(-NumberOfDaysToDisplay);
 
                 List<List<AppUsage>> weekUsage = new List<List<AppUsage>>();
                 ChartValues<double> hours = new ChartValues<double>();
@@ -190,7 +206,7 @@ namespace DigitalWellbeingWPF.ViewModels
                 List<DateTime> loadedDates = new List<DateTime>();
 
                 // Load last week's data
-                for (int i = 1; i <= PrevDaysToLoad; i++)
+                for (int i = 1; i <= NumberOfDaysToDisplay; i++)
                 {
                     DateTime date = minDate.AddDays(i).Date;
 
@@ -241,6 +257,7 @@ namespace DigitalWellbeingWPF.ViewModels
         {
             ReloadSettings();
             TryRefreshData();
+            
         }
 
         public void OnExcludeApp(string processName)
@@ -312,7 +329,7 @@ namespace DigitalWellbeingWPF.ViewModels
             try
             {
                 DateTime selectedDate = WeeklyChartLabelDates.ElementAt(index);
-
+                
                 // If selected date is already shown (loaded) and it is not the date today
                 // Avoid Refresh, but Refresh if date is today
                 if (selectedDate == LoadedDate && selectedDate != DateTime.Now.Date)
@@ -325,6 +342,7 @@ namespace DigitalWellbeingWPF.ViewModels
 
                     TryRefreshData();
                     UpdatePieChartAndList(WeekAppUsage.ElementAt(index));
+                    
                 }
             }
             catch (IndexOutOfRangeException)
@@ -341,6 +359,7 @@ namespace DigitalWellbeingWPF.ViewModels
 
         private async void TryRefreshData()
         {
+            
             // If weekly data not loaded yet, do not refresh
             if (!IsWeeklyDataLoaded) return;
 
@@ -359,7 +378,7 @@ namespace DigitalWellbeingWPF.ViewModels
                     List<AppUsage> filteredUsageList = appUsageList.Where(appUsageFilter).ToList();
                     filteredUsageList.Sort(appUsageSorter);
                     UpdatePieChartAndList(filteredUsageList);
-
+                    
                     // Refresh Bar Graph
                     WeeklyChartData.ElementAt(0).Values[GetDayIndex(LoadedDate.Date)] = TotalDuration.TotalHours;
                 }
@@ -369,9 +388,10 @@ namespace DigitalWellbeingWPF.ViewModels
                 }
             }
         }
-
+        
         private void RefreshListItems()
         {
+            
             foreach (AppUsageListItem item in DayListItems)
             {
                 item.Refresh();
@@ -380,6 +400,7 @@ namespace DigitalWellbeingWPF.ViewModels
 
         private void RefreshTagChart()
         {
+            
             List<AppUsage> usageList = GetDayUsage(LoadedDate);
 
             // Load Tags
@@ -442,9 +463,10 @@ namespace DigitalWellbeingWPF.ViewModels
             TagsChartData.Clear();
             TagsChartData.AddRange(tempTagChartData);
         }
-
+        // this function loads everytime a menu window changes Possible apply button.
         private void ReloadSettings()
         {
+            
             // Apply new settings
             bool enableAutoRefresh = Properties.Settings.Default.EnableAutoRefresh;
             if (enableAutoRefresh)
@@ -466,7 +488,6 @@ namespace DigitalWellbeingWPF.ViewModels
                     AppLogger.WriteLine("No Timer");
                 }
             }
-
             LoadUserExcludedProcesses();
         }
 
@@ -716,11 +737,15 @@ namespace DigitalWellbeingWPF.ViewModels
 
             RefreshListItems();
         }
-
+        
         private void OnPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
+                private void ApplyButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Refresh data based on updated days
+            LoadWeeklyData();
+        }
     }
 }

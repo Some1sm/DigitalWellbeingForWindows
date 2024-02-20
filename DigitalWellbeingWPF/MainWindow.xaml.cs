@@ -65,12 +65,12 @@ namespace DigitalWellbeingWPF
             switch (selectedNavItem.Tag)
             {
                 case "home":
-                    NavView.Header = $"App Usage (Last {AppUsageViewModel.PrevDaysToLoad} Days)";
+                    NavView.Header = $"App Usage (Last {AppUsageViewModel.NumberOfDaysToDisplay} Days)";
                     ContentFrame.Content = usagePage;
                     usagePage.OnNavigate();
                     break;
                 default:
-                    NavView.Header = $"App Usage (Last {AppUsageViewModel.PrevDaysToLoad} Days)";
+                    NavView.Header = $"App Usage (Last {AppUsageViewModel.NumberOfDaysToDisplay} Days)";
                     ContentFrame.Content = usagePage;
                     usagePage.OnNavigate();
                     break;

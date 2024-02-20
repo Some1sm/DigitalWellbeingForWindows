@@ -34,7 +34,8 @@ namespace DigitalWellbeingWPF.Properties {
                 this["MinumumDuration"] = value;
             }
         }
-        
+       
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("System")]
@@ -58,7 +59,23 @@ namespace DigitalWellbeingWPF.Properties {
                 this["RefreshIntervalSeconds"] = value;
             }
         }
-        
+        // Some1sm day amount this is just so I can find it
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
+        public int DayAmount
+        {
+            get
+            {
+                return ((int)(this["DayAmount"]));
+            }
+            set
+            {
+                this["DayAmount"] = value;
+            }
+           
+    }
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
