@@ -1,4 +1,4 @@
-# Digital Wellbeing For Windows 10
+# Digital Wellbeing For Windows 11
 
 As the project seemengly got abandoned by Christian I will take it over as a personal learning project. I have no idea about coding so this will be fun.
 -D
@@ -44,7 +44,7 @@ There are no warranties associated in using this app.
 - **Auto-Refresh**. Auto-Refresh charts on intervals.
 
 ## Installation
-**Download the .msi** installer of the [latest version / release](https://github.com/christiankyle-ching/DigitalWellbeingForWindows/releases/latest).
+**Download the .msi** installer of the [latest version / release](https://github.com/some1sm/DigitalWellbeingForWindows/releases/latest).
 
 _Windows Defender SmartScreen will block the installation of this file. Read the source code if you have any doubts, or run a [VirusTotal](https://www.virustotal.com/) scan._
 
