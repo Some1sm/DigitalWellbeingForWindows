@@ -75,6 +75,11 @@ namespace DigitalWellbeingWPF
                     ContentFrame.Content = usagePage;
                     usagePage.OnNavigate();
                     break;
+                // --- ADD THIS CASE FOR THE NEW NAVIGATION ITEM ---
+                case "dateRange":
+                    NavView.Header = "App Usage (Custom Date Range)"; // Set a suitable header
+                    ContentFrame.Content = new Views.DateRangeAppUsagePage(); // Create an instance of the new page
+                    break;
                 default:
                     NavView.Header = $"App Usage (Last {AppUsageViewModel.NumberOfDaysToDisplay} Days)";
                     ContentFrame.Content = usagePage;

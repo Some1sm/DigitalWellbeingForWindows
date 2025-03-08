@@ -46,6 +46,9 @@
     <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="MetroChart.WPF, Version=0.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroChart.WPF.0.0.0.3\lib\net40\MetroChart.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="ModernWpf, Version=0.9.6.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ModernWpfUI.0.9.6\lib\net45\ModernWpf.dll</HintPath>
     </Reference>
@@ -78,19 +81,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\DoubleLessThanConverter.cs" />
+    <Compile Include="Converters\StringToVisibilityConverter.cs" />
     <Compile Include="Helpers\AppLogger.cs" />
     <Compile Include="Helpers\EnumUtils.cs" />
     <Compile Include="Helpers\Notifier.cs" />
     <Compile Include="Helpers\SettingsManager.cs" />
     <Compile Include="Helpers\StorageManager.cs" />
     <Compile Include="Helpers\Updater.cs" />
+    <Compile Include="LimitedTooltip.xaml.cs">
+      <DependentUpon>LimitedTooltip.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\AppTag.cs" />
     <Compile Include="ViewModels\AppUsageViewModel.cs" />
+    <Compile Include="ViewModels\DateRangeAppUsageViewModel.cs" />
     <Compile Include="Views\AlertWindow.xaml.cs">
       <DependentUpon>AlertWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ClearDataWindow.xaml.cs">
       <DependentUpon>ClearDataWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DateRangeAppUsagePage.xaml.cs">
+      <DependentUpon>DateRangeAppUsagePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SetAppTagWindow.xaml.cs">
       <DependentUpon>SetAppTagWindow.xaml</DependentUpon>
@@ -104,6 +116,10 @@
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="LimitedTooltip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -128,6 +144,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ClearDataWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DateRangeAppUsagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

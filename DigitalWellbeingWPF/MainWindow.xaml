@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DigitalWellbeingWPF"
         mc:Ignorable="d"
         xmlns:ui="http://schemas.modernwpf.com/2019"
-        ui:WindowHelper.UseModernWindowStyle="True" 
+        ui:WindowHelper.UseModernWindowStyle="True"
         Height="660" Width="900" MinHeight="660" MinWidth="900"
         Title="Digital Wellbeing For Windows"
         WindowStartupLocation="CenterScreen"
@@ -19,6 +19,8 @@
 
             <ui:NavigationView.MenuItems>
                 <ui:NavigationViewItem Tag="home" Icon="Home" Content="Home"/>
+                <!-- ADD THIS NEW NAVIGATION VIEW ITEM -->
+                <ui:NavigationViewItem Tag="dateRange" Icon="Calendar" Content="Date Range"/>
             </ui:NavigationView.MenuItems>
 
             <Frame x:Name="ContentFrame"
@@ -26,6 +28,5 @@
                    HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch"/>
         </ui:NavigationView>
     </Grid>
-    
+
 </Window>
-    

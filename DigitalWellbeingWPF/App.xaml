@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:DigitalWellbeingWPF"
              xmlns:ui="http://schemas.modernwpf.com/2019"
+             xmlns:converters="clr-namespace:DigitalWellbeingWPF.Converters"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -24,6 +25,11 @@
             <SolidColorBrush x:Key="Material_Red">#B71C1C</SolidColorBrush>
             <SolidColorBrush x:Key="Material_Blue">#0D47A1</SolidColorBrush>
             <SolidColorBrush x:Key="Material_Yellow">#F57F17</SolidColorBrush>
+
+            <converters:DoubleLessThanConverter x:Key="DoubleLessThanConverter" />
+            <!-- ADD THIS LINE -->
+            <converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter" />
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

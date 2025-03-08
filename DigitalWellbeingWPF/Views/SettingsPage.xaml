@@ -142,8 +142,8 @@
                             <ui:SimpleStackPanel Grid.Column="0" Margin="0,0,20,0">
                                 <TextBlock Text="Days to show on the graph:" Style="{StaticResource BaseTextBlockStyle}" />
                                 <TextBlock
-                                    Text="Introduce a number higher than 0"
-                                    Style="{StaticResource CaptionTextBlockStyle}" />
+                Text="(Requires restart to take effect, unless you implement the changes from this StackOverflow answer)"
+                Style="{StaticResource CaptionTextBlockStyle}" />
                             </ui:SimpleStackPanel>
                             <ui:NumberBox x:Name="DaysToShowTextBox" Grid.Column="1" HorizontalAlignment="Left"
                                 Value="{Binding NumberOfDaysToDisplay, Mode=TwoWay}" MinWidth="80" />
@@ -334,7 +334,7 @@
 
                             <!-- Copyright -->
                             <TextBlock x:Name="TxtCopyright" Style="{StaticResource BodyTextBlockStyle}" FontWeight="Light"
-                                Visibility="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Text}" />
+                                       Visibility="{Binding Path=Text, RelativeSource={RelativeSource Self}, Converter={StaticResource StringToVisibilityConverter}}"/>
 
                         </ui:SimpleStackPanel>
 
