@@ -144,15 +144,6 @@ namespace DigitalWellbeingWPF.Views
             Properties.Settings.Default.Save();
         }
 
-        private void SubmitChange(object sender, RoutedEventArgs e)
-        {
-            int DayAmountlocal = (int)DaysToShowTextBox.Value;
-            Properties.Settings.Default.DayAmount = DayAmountlocal;
-            Properties.Settings.Default.Save();
-            AppUsageViewModel.NumberOfDaysToDisplay = Properties.Settings.Default.DayAmount;
-
-        }
-
         private void MinDuration_LostFocus(object sender, RoutedEventArgs e)
         {
             int hrs = (int)MinDuration_Hours.Value;
@@ -300,6 +291,27 @@ namespace DigitalWellbeingWPF.Views
         {
             ClearDataWindow wnd = new ClearDataWindow();
             wnd.ShowDialog();
+        }
+
+        private void ApplyButton_Click(object sender, RoutedEventArgs e)
+        {
+            // 1. Save the new value to settings
+            int newDayAmount = (int)DaysToShowTextBox.Value;
+            Properties.Settings.Default.DayAmount = newDayAmount;
+            Properties.Settings.Default.Save();
+
+            // 2. Update the static property in AppUsageViewModel
+            AppUsageViewModel.NumberOfDaysToDisplay = newDayAmount;
+
+            // 3. Reload the usage page AND navigate back to "home"
+            MainWindow mWindow = Application.Current.MainWindow as MainWindow;
+            if (mWindow != null)
+            {
+                mWindow.ReloadUsagePage(); // This still creates the new DayAppUsagePage
+
+                // --- ADDED: Explicitly navigate back to "home" ---
+                mWindow.NavView.SelectedItem = mWindow.NavView.MenuItems[0]; // Select the first item ("home")
+            }
         }
     }
 }

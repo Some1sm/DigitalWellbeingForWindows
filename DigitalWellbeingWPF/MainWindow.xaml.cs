@@ -52,6 +52,12 @@ namespace DigitalWellbeingWPF
 
         private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
+            // --- ADDED NULL CHECK ---
+            if (args.SelectedItem == null)
+            {
+                return; // Exit the method if no item is selected
+            }
+
             NavigationViewItem selectedNavItem = args.SelectedItem as NavigationViewItem;
 
             if (args.IsSettingsSelected)
@@ -199,11 +205,18 @@ namespace DigitalWellbeingWPF
             autorunCheckCount++;
             Console.WriteLine($"Checked Autorun: {autorunCheckCount}");
         }
-
         public void ReloadUsagePage()
         {
-            // New instance to reload all completely
-            usagePage = new DayAppUsagePage();
+            usagePage = new DayAppUsagePage();  // Create new instance
+
+            // Force re-selection in NavigationView (to update ContentFrame)
+            var selectedItem = NavView.SelectedItem;
+            NavView.SelectedItem = null;  // Temporarily deselect
+            NavView.SelectedItem = selectedItem; // Reselect "home"
+
+            // --- ADDED: Directly set the header text ---
+            NavView.Header = $"App Usage (Last {AppUsageViewModel.NumberOfDaysToDisplay} Days)";
+            ContentFrame.Content = usagePage;
         }
     }
 }
