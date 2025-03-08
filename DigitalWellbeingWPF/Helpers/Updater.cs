@@ -11,13 +11,13 @@ namespace DigitalWellbeingWPF.Helpers
 {
     public static class Updater
     {
-        public static readonly string appGithubLink = "https://github.com/christiankyle-ching/DigitalWellbeingForWindows";
-        public static readonly string appReleasesLink = "https://github.com/christiankyle-ching/DigitalWellbeingForWindows/releases/latest";
+        public static readonly string appGithubLink = "https://github.com/Some1sm/DigitalWellbeingForWindows/releases";
+        public static readonly string appReleasesLink = "https://github.com/Some1sm/DigitalWellbeingForWindows/releases/latest";
         public static readonly string appWebsiteLink = "https://christiankyleching.vercel.app/works.html?scrollTo=digital-wellbeing-windows";
 
         static readonly HttpClient client = new HttpClient();
         static readonly string appGithubLink_ReleasesAPIURL =
-                    "https://api.github.com/repos/christiankyle-ching/DigitalWellbeingForWindows/releases/latest";
+                    "https://api.github.com/repos/Some1sm/DigitalWellbeingForWindows/releases/latest";
 
         // Versions should be:
         // 1.0.1        -> OK

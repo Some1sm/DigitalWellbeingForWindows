@@ -142,7 +142,7 @@
                             <ui:SimpleStackPanel Grid.Column="0" Margin="0,0,20,0">
                                 <TextBlock Text="Days to show on the graph:" Style="{StaticResource BaseTextBlockStyle}" />
                                 <TextBlock
-                                    Text="(Requires restart to take effect, unless you implement the changes from this StackOverflow answer)"
+                                    Text="Introduce a number higher than 0"
                                     Style="{StaticResource CaptionTextBlockStyle}" />
                             </ui:SimpleStackPanel>
                             <ui:NumberBox x:Name="DaysToShowTextBox" Grid.Column="1" HorizontalAlignment="Left"
