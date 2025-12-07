@@ -1,6 +1,7 @@
 ﻿using DigitalWellbeing.Core;
+using DigitalWellbeing.Core.Models;
+using DigitalWellbeing.Core.Helpers;
 using DigitalWellbeingWPF.Helpers;
-using DigitalWellbeingWPF.Models;
 using DigitalWellbeingWPF.ViewModels;
 using DigitalWellbeingWPF.Views;
 using ModernWpf.Controls;
