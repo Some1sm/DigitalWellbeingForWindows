@@ -742,10 +742,6 @@ namespace DigitalWellbeingWPF.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-                private void ApplyButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Refresh data based on updated days
-            LoadWeeklyData();
-        }
+
     }
 }

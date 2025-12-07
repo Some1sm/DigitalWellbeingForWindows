@@ -49,7 +49,7 @@
     <ROW Property="ProductCode" Value="1033:{993483B7-9386-4DFC-A22D-96EEDD80F673} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Digital Wellbeing For Windows"/>
-    <ROW Property="ProductVersion" Value="2.0.4.2" Options="32"/>
+    <ROW Property="ProductVersion" Value="2.0.5.0" Options="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{D7DA3A0D-99E1-4FAC-B2CC-FEBB27BCA59A}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
