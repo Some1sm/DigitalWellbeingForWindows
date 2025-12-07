@@ -211,9 +211,14 @@ namespace DigitalWellbeing.Setup
             UpdateStatus("Creating shortcuts...");
             await Task.Run(() =>
             {
+                // UI Shortcuts
                 CreateShortcut(Environment.GetFolderPath(Environment.SpecialFolder.Startup), "DigitalWellbeing.lnk", exePath, installPath);
                 CreateShortcut(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "DigitalWellbeing.lnk", exePath, installPath);
                 
+                // Service Shortcut (Critical for data logging)
+                string serviceExePath = Path.Combine(installPath, "DigitalWellbeingService.NET4.6.exe");
+                CreateShortcut(Environment.GetFolderPath(Environment.SpecialFolder.Startup), "DigitalWellbeing Service.lnk", serviceExePath, installPath);
+
                 string infoPrograms = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Programs), AppName);
                 if (!Directory.Exists(infoPrograms)) Directory.CreateDirectory(infoPrograms);
                 CreateShortcut(infoPrograms, "DigitalWellbeing.lnk", exePath, installPath);
@@ -223,6 +228,18 @@ namespace DigitalWellbeing.Setup
             RegisterUninstaller(installPath, uninstallExePath);
 
             UpdateStatus("Starting application...");
+            
+            // Start Service
+            string servicePath = Path.Combine(installPath, "DigitalWellbeingService.NET4.6.exe");
+            if (File.Exists(servicePath))
+            {
+                ProcessStartInfo serviceInfo = new ProcessStartInfo(servicePath);
+                serviceInfo.WorkingDirectory = Path.GetDirectoryName(servicePath);
+                // serviceInfo.WindowStyle = ProcessWindowStyle.Hidden; // WinExe handles this automatically but explicit doesn't hurt
+                Process.Start(serviceInfo);
+            }
+
+            // Start UI
             if (File.Exists(exePath))
             {
                 ProcessStartInfo startInfo = new ProcessStartInfo(exePath);
@@ -249,8 +266,11 @@ namespace DigitalWellbeing.Setup
 
             UpdateStatus("Removing shortcuts...");
             string startupLnk = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), "DigitalWellbeing.lnk");
+            string startupServiceLnk = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), "DigitalWellbeing Service.lnk");
             string desktopLnk = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "DigitalWellbeing.lnk");
+            
             if (File.Exists(startupLnk)) File.Delete(startupLnk);
+            if (File.Exists(startupServiceLnk)) File.Delete(startupServiceLnk);
             if (File.Exists(desktopLnk)) File.Delete(desktopLnk);
             
             string infoPrograms = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Programs), AppName);
