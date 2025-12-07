@@ -1,5 +1,5 @@
 ﻿using DigitalWellbeingWPF.Helpers;
-using DigitalWellbeingWPF.Models;
+using DigitalWellbeing.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
