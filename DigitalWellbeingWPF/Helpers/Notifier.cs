@@ -1,4 +1,4 @@
-﻿using DigitalWellbeingWPF.Models;
+﻿using DigitalWellbeing.Core.Models;
 using DigitalWellbeingWPF.ViewModels;
 using System;
 using System.Collections.Generic;
