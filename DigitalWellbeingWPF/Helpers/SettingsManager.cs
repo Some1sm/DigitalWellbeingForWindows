@@ -1,5 +1,5 @@
 ﻿using DigitalWellbeing.Core;
-using DigitalWellbeingWPF.Models;
+using DigitalWellbeing.Core.Models;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -216,6 +216,15 @@ namespace DigitalWellbeingWPF.Helpers
             }
 
             SaveAppTags();
+        }
+
+        public static AppTag GetAppTag(string processName)
+        {
+            if (appTags.ContainsKey(processName))
+            {
+                return appTags[processName];
+            }
+            return AppTag.Untagged;
         }
 
         #endregion
