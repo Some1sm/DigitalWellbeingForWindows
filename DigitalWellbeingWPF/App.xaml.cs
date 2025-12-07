@@ -27,8 +27,8 @@ namespace DigitalWellbeingWPF
         public App()
         {
             // Global Exception Handling
-            AppDomain currentDomain = AppDomain.CurrentDomain;
-            currentDomain.UnhandledException += new UnhandledExceptionEventHandler(GlobalExceptionHandler);
+            AppDomain.CurrentDomain.UnhandledException += GlobalExceptionHandler;
+            this.DispatcherUnhandledException += App_DispatcherUnhandledException;
 
             CheckAndShowCurrentApp();
         }
@@ -57,15 +57,24 @@ namespace DigitalWellbeingWPF
             }
         }
 
+        private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        {
+            GlobalExceptionHandler(sender, new UnhandledExceptionEventArgs(e.Exception, false));
+            e.Handled = true;
+        }
+
         static void GlobalExceptionHandler(object sender, UnhandledExceptionEventArgs args)
         {
             Exception e = (Exception)args.ExceptionObject;
 
-            AppLogger.WriteLine(
-                $"{e.Message}\n{e.StackTrace}\n" +
-                $"{e.InnerException?.Message}\n{e.InnerException?.StackTrace}");
+            try
+            {
+                // Try logging
+                AppLogger.WriteLine($"{e.Message}\n{e.StackTrace}");
+            }
+            catch { }
 
-            ShowMessage_ReportBug(e);
+            MessageBox.Show($"Application Crash:\n{e.Message}\n\n{e.StackTrace}", "DigitalWellbeing Crash", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         static void ShowMessage_ReportBug(Exception e)
