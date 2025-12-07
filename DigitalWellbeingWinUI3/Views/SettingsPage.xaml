@@ -1,0 +1,166 @@
+<Page
+    x:Class="DigitalWellbeingWinUI3.Views.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer Padding="20">
+        <StackPanel Spacing="10" MaxWidth="800" HorizontalAlignment="Left">
+            
+            <TextBlock Text="Settings" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,0,0,10"/>
+
+            <!-- App Runtime -->
+            <TextBlock Text="App Runtime" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,10,0,5"/>
+            <StackPanel Spacing="5">
+                <!-- Run on Startup -->
+                <Grid Padding="12" Background="{ThemeResource LayerFillColorDefaultBrush}" CornerRadius="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Spacing="2">
+                        <TextBlock Text="Run on Startup" Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+                        <TextBlock Text="Runs this app on startup." Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                    </StackPanel>
+                    <ToggleSwitch x:Name="EnableRunOnStartup" Grid.Column="1" Toggled="EnableRunOnStartup_Toggled"/>
+                </Grid>
+
+                <!-- Minimize on Exit -->
+                <Grid Padding="12" Background="{ThemeResource LayerFillColorDefaultBrush}" CornerRadius="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Spacing="2">
+                        <TextBlock Text="Minimize On Exit" Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+                        <TextBlock Text="Minimize the app to tray on exit instead of closing." Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                    </StackPanel>
+                    <ToggleSwitch x:Name="ToggleMinimizeOnExit" Grid.Column="1" Toggled="ToggleMinimizeOnExit_Toggled"/>
+                </Grid>
+            </StackPanel>
+
+            <!-- Usage Data -->
+            <TextBlock Text="Usage Data" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,10,0,5"/>
+            
+            <!-- Excluded Apps -->
+            <Grid Padding="12" Background="{ThemeResource LayerFillColorDefaultBrush}" CornerRadius="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Spacing="2" Margin="0,0,0,10">
+                    <TextBlock Text="Excluded Apps" Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+                    <TextBlock Text="Double-click to remove an excluded app." Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                </StackPanel>
+                <ListView Grid.Row="1" x:Name="ExcludedAppList" Height="150" DoubleTapped="ExcludedAppList_DoubleTapped" BorderThickness="1" BorderBrush="{ThemeResource SurfaceStrokeColorDefaultBrush}" CornerRadius="4"/>
+            </Grid>
+
+            <!-- Time Limits -->
+            <Grid Padding="12" Background="{ThemeResource LayerFillColorDefaultBrush}" CornerRadius="4">
+                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Spacing="2" Margin="0,0,0,10">
+                    <TextBlock Text="Time Limits per App" Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+                    <TextBlock Text="Double-click to set time limit (Not fully implemented in WinUI 3 yet)." Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                </StackPanel>
+                <ListView Grid.Row="1" x:Name="AppTimeLimitsList" Height="150" DoubleTapped="AppTimeLimitsList_DoubleTapped" BorderThickness="1" BorderBrush="{ThemeResource SurfaceStrokeColorDefaultBrush}" CornerRadius="4"/>
+            </Grid>
+
+            <!-- Display -->
+            <TextBlock Text="Display" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,10,0,5"/>
+             <StackPanel Spacing="5">
+                <!-- Days to Show -->
+                 <Grid Padding="12" Background="{ThemeResource LayerFillColorDefaultBrush}" CornerRadius="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Spacing="2">
+                        <TextBlock Text="Days to show on graph" Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+                         <TextBlock Text="Requires restart or Apply." Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                    </StackPanel>
+                     <StackPanel Orientation="Horizontal" Grid.Column="1" Spacing="10">
+                         <NumberBox x:Name="DaysToShowTextBox" Value="7" SpinButtonPlacementMode="Compact" Width="150"/>
+                         <Button Content="Apply" Click="ApplyButton_Click"/>
+                     </StackPanel>
+                </Grid>
+
+                 <!-- Minimum Duration -->
+                <Grid Padding="12" Background="{ThemeResource LayerFillColorDefaultBrush}" CornerRadius="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Spacing="2">
+                        <TextBlock Text="Minimum App Duration (seconds)" Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+                        <TextBlock Text="Apps with usage less than this will be hidden (default 0s)." Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Spacing="10">
+                        <NumberBox x:Name="MinDurationTextBox" Value="0" SpinButtonPlacementMode="Compact" Width="150" Minimum="0"/>
+                        <Button Content="Apply" Click="ApplyMinDuration_Click"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Refresh Interval -->
+                  <Grid Padding="12" Background="{ThemeResource LayerFillColorDefaultBrush}" CornerRadius="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Spacing="2">
+                        <TextBlock Text="Auto-Refresh Interval (s)" Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+                         <TextBlock Text="Minimum 30 seconds." Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                    </StackPanel>
+                     <StackPanel Orientation="Horizontal" Grid.Column="1" Spacing="10">
+                         <ToggleSwitch x:Name="EnableAutoRefresh" Toggled="EnableAutoRefresh_Toggled"/>
+                         <NumberBox x:Name="RefreshInterval" Width="150" SpinButtonPlacementMode="Compact" Minimum="30" Maximum="600" ValueChanged="RefreshInterval_ValueChanged" IsEnabled="{x:Bind EnableAutoRefresh.IsOn, Mode=OneWay}"/>
+                     </StackPanel>
+                </Grid>
+
+                 <!-- Theme Mode -->
+                <Grid Padding="12" Background="{ThemeResource LayerFillColorDefaultBrush}" CornerRadius="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Spacing="2">
+                        <TextBlock Text="Theme Mode" Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+                    </StackPanel>
+                    <ComboBox x:Name="CBTheme" Grid.Column="1" SelectionChanged="CBTheme_SelectionChanged" Width="150">
+                        <ComboBoxItem Content="System" Tag="System"/>
+                        <ComboBoxItem Content="Light" Tag="Light"/>
+                        <ComboBoxItem Content="Dark" Tag="Dark"/>
+                    </ComboBox>
+                </Grid>
+             </StackPanel>
+
+            <!-- Data -->
+             <TextBlock Text="Data" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,10,0,5"/>
+              <Grid Padding="12" Background="{ThemeResource LayerFillColorDefaultBrush}" CornerRadius="4">
+                   <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                     <StackPanel Grid.Column="0" Spacing="2">
+                        <TextBlock Text="Manage Data" Style="{ThemeResource BodyStrongTextBlockStyle}"/>
+                    </StackPanel>
+                   <StackPanel Orientation="Horizontal" Grid.Column="1" Spacing="10">
+                       <Button Content="Open App Folder" Click="BtnOpenAppFolder_Click"/>
+                       <!-- Clear Data requires a Dialog, leaving for later or simple implementation -->
+                   </StackPanel>
+              </Grid>
+
+             <!-- About -->
+             <TextBlock Text="About" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,10,0,5"/>
+             <StackPanel Spacing="5">
+                  <TextBlock x:Name="TxtCurrentVersion" Text="App Version: ..." Style="{ThemeResource BodyTextBlockStyle}"/>
+                  <HyperlinkButton Content="Source Code (GitHub)" NavigateUri="https://github.com/dcepero/DigitalWellbeing"/>
+             </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>
