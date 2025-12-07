@@ -44,7 +44,7 @@ There are no warranties associated in using this app.
 - **Auto-Refresh**. Auto-Refresh charts on intervals.
 
 ## Installation
-**Download the .msi** installer of the [latest version / release](https://github.com/some1sm/DigitalWellbeingForWindows/releases/latest).
+**Download the .exe** installer of the [latest version / release](https://github.com/some1sm/DigitalWellbeingForWindows/releases/latest).
 
 _Windows Defender SmartScreen will block the installation of this file. Read the source code if you have any doubts, or run a [VirusTotal](https://www.virustotal.com/) scan._
 
@@ -79,9 +79,15 @@ Fetching icons from running apps is a hit or miss. For better chances, try runni
 - `DigitalWellbeing.Core` - A class library that has static shared classes among the projects.
 - `DigitalWellbeingService.NET4.6` - A console application that monitors current active process.
 - `DigitalWellbeingWPF` - Front-end UI application.
-- `Setup` - An [Advanced Installer](https://www.advancedinstaller.com/) setup project for building an .MSI installer.
+- `DigitalWellbeing.Setup` - A self-contained C# application that installs the software.
 
-## How to Build with .MSI Installer
-Select `Release - AdvancedInstaller` in Solution Configurations, then Build Solution.
-
-If you want to use Advanced Installer program instead, build using `Release` config only, then build the .msi using Advanced Installer tool.
+## How to Build
+To build the installer, run the valid PowerShell script in the root directory:
+```powershell
+.\publish.ps1
+```
+This script will:
+1.  Build all projects in `Release` configuration.
+2.  Package the application into a zip.
+3.  Embed the zip into the Installer.
+4.  Generate `DigitalWellbeing_Installer.exe` in the root directory.
