@@ -1,6 +1,6 @@
 ﻿using DigitalWellbeing.Core;
 using DigitalWellbeingWPF.Helpers;
-using DigitalWellbeingWPF.Models;
+using DigitalWellbeing.Core.Models;
 using LiveCharts;
 using LiveCharts.Wpf;
 using System;
