@@ -1,6 +1,8 @@
 ﻿using DigitalWellbeing.Core;
 using DigitalWellbeingWPF.Helpers;
-using DigitalWellbeingWPF.Models;
+using DigitalWellbeing.Core.Models;
+using DigitalWellbeing.Core.Helpers;
+using DigitalWellbeingWPF.Helpers;
 using DigitalWellbeingWPF.Models.UserControls;
 using DigitalWellbeingWPF.Views;
 using LiveCharts;
@@ -444,7 +446,7 @@ namespace DigitalWellbeingWPF.ViewModels
                         DataLabels = percentage >= 0.1,
                         Title = tagHour.Key,
                         LabelPoint = TagChartFormatter,
-                        Fill = AppTagHelper.GetTagColor(tagHour.Key),
+                        Fill = AppTagHelper.GetTagColor((AppTag)Enum.Parse(typeof(AppTag), tagHour.Key)),
                     });
                 }
             }
