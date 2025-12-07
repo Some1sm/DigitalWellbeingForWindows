@@ -1,4 +1,6 @@
 ﻿using DigitalWellbeingWPF.Helpers;
+using DigitalWellbeing.Core.Helpers;
+using DigitalWellbeing.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
