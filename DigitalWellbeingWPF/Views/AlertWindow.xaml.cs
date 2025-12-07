@@ -1,5 +1,5 @@
 ﻿using DigitalWellbeingWPF.Helpers;
-using DigitalWellbeingWPF.Models;
+using DigitalWellbeing.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using DigitalWellbeing.Core.Helpers;
 
 namespace DigitalWellbeingWPF.Views
 {
